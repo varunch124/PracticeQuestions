@@ -1,38 +1,27 @@
 package Tutorial;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
-public class FinfDuplicates {
+public class FindDuplicates {
 
     public static void main(String[] args) {
-        int[] array = {1, 5, 4, 7, 10, 4, 5, 1, 7};
+        int[] array = {1, 2, 3, 4, 5, 6, 2};
 
-        int target = 9;
+        System.out.println(findDuplicates(array));
 
 
-        int[] answer = findSum(array, target);
-
-        System.out.println(answer[0] + " " + answer[1]);
     }
 
-    public static int[] findSum(int[] array, int target) {
-        HashMap<Integer, Integer> hs = new HashMap<>();
+    public static boolean findDuplicates(int[] array) {
+        HashSet<Integer> hs = new HashSet<>();
 
-        int[] result = new int[2];
-
-        for(int i =0; i < array.length; i++) {
-            int remainder = target - array[i];
-            if(hs.containsKey(remainder)) {
-                result[0] = hs.get(remainder);
-                result[1] = i;
-                return result;
-            } else {
-                hs.put(array[i], i);
+        for(int i =0; i< array.length; i++){
+            if(hs.contains(array[i])){
+                return false;
             }
-            }
-
-        return result;
+            hs.add(array[i]);
         }
-
-
+            return true;
+        }
     }
